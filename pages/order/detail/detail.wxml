@@ -1,0 +1,105 @@
+<view class="container">
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading">
+    <text>加载中...</text>
+  </view>
+  
+  <!-- 错误状态 -->
+  <view wx:elif="{{error}}" class="error">
+    <text>加载失败，请重试</text>
+  </view>
+  
+  <!-- 订单详情 -->
+  <view wx:else>
+    <!-- 订单基本信息 -->
+    <view class="card">
+      <view class="order-header">
+        <text class="order-title">订单详情</text>
+        <text class="order-status">{{order.status_display || '待支付'}}</text>
+      </view>
+      <view class="order-info">
+        <view>订单号：{{order.order_no || order.id}}</view>
+        <view>创建时间：{{order.created_at}}</view>
+        <view>支付状态：{{order.payment_status_display || '未支付'}}</view>
+      </view>
+    </view>
+    
+    <!-- 商品信息 -->
+    <view class="card" wx:if="{{order.items && order.items.length > 0}}">
+      <view class="section-title">商品信息</view>
+      <view class="product-list">
+        <view class="product-item" wx:for="{{order.items}}" wx:key="id">
+          <image class="product-image" src="{{item.mainImage}}" mode="aspectFill"></image>
+          <view class="product-info">
+            <text class="product-name">{{item.product_name}}</text>
+            <text class="product-sku">SKU: {{item.product_sku}}</text>
+          </view>
+          <view class="product-details">
+            <text class="product-price">¥{{item.price}}</text>
+            <text class="product-quantity">x{{item.quantity}}</text>
+            <text class="product-subtotal">小计: ¥{{item.subtotal}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 金额信息 -->
+    <view class="card">
+      <view class="section-title">金额明细</view>
+      <view class="amount-details">
+        <view class="amount-row">
+          <text>商品总价：</text>
+          <text>¥{{order.total_amount}}</text>
+        </view>
+        <view class="amount-row" wx:if="{{order.discount_amount > 0}}">
+          <text>优惠金额：</text>
+          <text class="discount">-¥{{order.discount_amount}}</text>
+        </view>
+        <view class="amount-row" wx:if="{{order.shipping_fee > 0}}">
+          <text>配送费：</text>
+          <text>¥{{order.shipping_fee}}</text>
+        </view>
+        <view class="amount-row total">
+          <text>实付金额：</text>
+          <text class="total-amount">¥{{order.final_amount}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 收货地址 -->
+    <view class="card" wx:if="{{order.delivery_address || order.address}}">
+      <view class="section-title">收货地址</view>
+      <view class="address-info">
+        <view wx:if="{{order.delivery_address}}">
+          <text class="address-text">{{order.delivery_address}}</text>
+          <text wx:if="{{order.contact_name}}" class="contact-info">联系人：{{order.contact_name}}</text>
+          <text wx:if="{{order.contact_phone}}" class="contact-info">电话：{{order.contact_phone}}</text>
+        </view>
+        <view wx:elif="{{order.address}}" class="address-details">
+          <view class="address-header">
+            <text class="receiver-name">{{order.address.name}}</text>
+            <text class="phone">{{order.address.phone}}</text>
+            <view class="default-tag" wx:if="{{order.address.is_default}}">默认</view>
+          </view>
+          <view class="address-detail">
+            <text class="address-text">{{order.address.province}}{{order.address.city}}{{order.address.district}}{{order.address.street}}{{order.address.detail_address}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 操作按钮 -->
+    <view class="card" wx:if="{{order.status === 'pending' || order.status === 'unpaid'}}">
+      <view class="section-title">订单操作</view>
+      <view class="action-buttons">
+        <button class="btn-danger" bindtap="deleteOrder" wx:if="{{order.status === 'pending' || order.status === 'unpaid'}}">
+          删除订单
+        </button>
+        <button class="btn-primary" bindtap="payOrder" wx:if="{{order.status === 'pending' || order.status === 'unpaid'}}">
+          立即支付
+        </button>
+      </view>
+    </view>
+  </view>
+</view>
+

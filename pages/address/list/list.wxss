@@ -1,0 +1,150 @@
+/* pages/address/list/list.wxss */
+.container {
+  padding: 20rpx;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+}
+
+/* 地址项 */
+.address-item {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.address-content {
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.address-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+
+.receiver-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-right: 20rpx;
+}
+
+.phone {
+  font-size: 28rpx;
+  color: #666;
+  margin-right: 20rpx;
+}
+
+.default-tag {
+  background-color: #667eea;
+  color: #ffffff;
+  font-size: 20rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 12rpx;
+  margin-left: auto;
+}
+
+.address-detail {
+  margin-top: 10rpx;
+}
+
+.address-text {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* 操作按钮区域 */
+.address-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20rpx 30rpx;
+  background-color: #fafafa;
+}
+
+.action-btn {
+  font-size: 24rpx;
+  padding: 12rpx 24rpx;
+  border-radius: 8rpx;
+  margin-left: 15rpx;
+  border: none;
+}
+
+.edit-btn {
+  background-color: #667eea;
+  color: #ffffff;
+}
+
+.delete-btn {
+  background-color: #ff4757;
+  color: #ffffff;
+}
+
+.default-btn {
+  background-color: #2ed573;
+  color: #ffffff;
+}
+
+.action-btn:active {
+  opacity: 0.8;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 100rpx 40rpx;
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  margin-bottom: 20rpx;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  color: #333;
+  margin-bottom: 15rpx;
+  display: block;
+}
+
+.empty-desc {
+  font-size: 26rpx;
+  color: #999;
+  display: block;
+}
+
+/* 加载状态 */
+.loading-state {
+  text-align: center;
+  padding: 60rpx 20rpx;
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  margin-bottom: 20rpx;
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #999;
+}
+
+/* 新增地址按钮区域 */
+.add-address-section {
+  padding: 20rpx 0;
+}
+
+.btn-primary {
+  width: 100%;
+  background-color: #667eea;
+  color: #ffffff;
+  font-size: 32rpx;
+  padding: 24rpx;
+  border-radius: 12rpx;
+  border: none;
+  font-weight: bold;
+}
+
+.btn-primary:active {
+  background-color: #5a6fd8;
+}
+

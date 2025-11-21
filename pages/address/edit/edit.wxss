@@ -1,0 +1,130 @@
+/* pages/address/edit/edit.wxss */
+.container {
+  padding: 20rpx;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+  margin-bottom: 30rpx;
+}
+
+.label {
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 15rpx;
+  font-weight: bold;
+}
+
+.required {
+  color: #ff4757;
+  font-size: 24rpx;
+}
+
+.input {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  border: 1rpx solid #e9ecef;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  color: #333;
+  background-color: #ffffff;
+}
+
+.input:focus {
+  border-color: #667eea;
+  outline: none;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 120rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border: 1rpx solid #e9ecef;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  color: #333;
+  background-color: #ffffff;
+  resize: none;
+}
+
+.textarea:focus {
+  border-color: #667eea;
+  outline: none;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.checkbox-label checkbox {
+  margin-right: 15rpx;
+  transform: scale(1.2);
+}
+
+.btn-primary {
+  width: 100%;
+  background-color: #667eea;
+  color: #ffffff;
+  font-size: 32rpx;
+  padding: 24rpx;
+  border-radius: 12rpx;
+  border: none;
+  font-weight: bold;
+  margin-top: 20rpx;
+}
+
+.btn-primary:active {
+  background-color: #5a6fd8;
+}
+
+.btn-primary[disabled] {
+  background-color: #aab5e0;
+}
+
+/* 选择器样式 */
+.picker-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  border: 1rpx solid #e9ecef;
+  border-radius: 8rpx;
+  background-color: #ffffff;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.picker-display.disabled {
+  background-color: #f8f9fa;
+  color: #999;
+  border-color: #e9ecef;
+}
+
+.picker-text {
+  flex: 1;
+  color: inherit;
+}
+
+.picker-arrow {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 15rpx;
+}

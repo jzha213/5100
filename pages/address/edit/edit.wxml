@@ -1,0 +1,63 @@
+<view class="container">
+  <view class="card">
+    <view class="form-group">
+      <text class="label">收货人姓名</text>
+      <input class="input" placeholder="请输入收货人姓名" value="{{form.name}}" bindinput="onInput" data-field="name" />
+    </view>
+    
+    <view class="form-group">
+      <text class="label">手机号</text>
+      <input class="input" placeholder="请输入手机号" value="{{form.phone}}" bindinput="onInput" data-field="phone" />
+    </view>
+    
+    <view class="form-group">
+      <text class="label">省份 <text class="required">*</text></text>
+      <picker bindchange="onProvinceChange" value="{{provinceIndex}}" range="{{provinces}}">
+        <view class="picker-display">
+          <text class="picker-text">{{form.province || '请选择省份'}}</text>
+          <text class="picker-arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+    
+    <view class="form-group">
+      <text class="label">城市 <text class="required">*</text></text>
+      <picker bindchange="onCityChange" value="{{cityIndex}}" range="{{cities}}" disabled="{{!form.province}}">
+        <view class="picker-display {{!form.province ? 'disabled' : ''}}">
+          <text class="picker-text">{{form.city || '请选择城市'}}</text>
+          <text class="picker-arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+    
+    <view class="form-group">
+      <text class="label">区县</text>
+      <picker bindchange="onDistrictChange" value="{{districtIndex}}" range="{{districts}}" disabled="{{!form.city}}">
+        <view class="picker-display {{!form.city ? 'disabled' : ''}}">
+          <text class="picker-text">{{form.district || '请选择区县'}}</text>
+          <text class="picker-arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+    
+    <view class="form-group">
+      <text class="label">街道</text>
+      <input class="input" placeholder="请输入街道" value="{{form.street}}" bindinput="onInput" data-field="street" />
+    </view>
+    
+    <view class="form-group">
+      <text class="label">详细地址</text>
+      <textarea class="textarea" placeholder="请输入详细地址" value="{{form.detail_address}}" bindinput="onInput" data-field="detail_address"></textarea>
+    </view>
+    
+    <view class="form-group">
+      <label class="checkbox-label">
+        <checkbox checked="{{form.is_default}}" bindchange="onDefaultChange" />
+        <text>设为默认地址</text>
+      </label>
+    </view>
+    
+    <button class="btn-primary" bindtap="save">保存</button>
+  </view>
+</view>
+

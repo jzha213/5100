@@ -1,0 +1,213 @@
+<view class="container">
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading">
+    <text>加载中...</text>
+  </view>
+  
+  <!-- 错误状态 -->
+  <view wx:elif="{{error}}" class="error">
+    <text>加载失败，请重试</text>
+  </view>
+  
+  <!-- 订单确认内容 -->
+  <view wx:else>
+    <!-- 商品信息 - 单个商品模式 -->
+    <view class="card" wx:if="{{product && mode !== 'checkout'}}">
+      <view class="product-header">
+        <text class="section-title">商品信息</text>
+      </view>
+      <view class="product-info">
+        <image class="product-image" src="{{product.mainImage}}" mode="aspectFill"></image>
+        <view class="product-details">
+          <text class="product-name">{{product.name}}</text>
+          <text class="product-sku">SKU: {{product.sku}}</text>
+          <text class="product-price">¥{{product.price}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 购物车模式 - 商品和地址配对显示 -->
+    <view wx:if="{{mode === 'checkout'}}">
+      <view 
+        class="order-group" 
+        wx:for="{{checkoutGroups}}" 
+        wx:key="address_id"
+      >
+        <!-- 商品信息 -->
+        <view class="card">
+          <view class="product-header">
+            <text class="section-title">{{index + 1}}号商品信息</text>
+          </view>
+          <view class="group-items">
+            <view 
+              class="checkout-item" 
+              wx:for="{{item.items}}" 
+              wx:for-item="product"
+              wx:key="id"
+            >
+              <image class="item-image" src="{{product.product_image}}" mode="aspectFill"></image>
+              <view class="item-details">
+                <text class="item-name">{{product.product_name}}</text>
+                <text class="item-sku">SKU: {{product.product_sku}}</text>
+                <view class="item-price-row">
+                  <text class="item-price">¥{{product.product_price}}</text>
+                  <text class="item-quantity">x{{product.quantity}}</text>
+                </view>
+              </view>
+              <view class="item-subtotal">
+                <text class="subtotal-price">¥{{product.subtotal}}</text>
+              </view>
+            </view>
+          </view>
+          
+          <!-- 该地址订单小计 -->
+          <view class="group-subtotal">
+            <text class="subtotal-label">该地址小计：</text>
+            <text class="subtotal-price">¥{{item.groupTotal}}</text>
+          </view>
+        </view>
+        
+        <!-- 收货地址 -->
+        <view class="card">
+          <view class="section-title">{{index + 1}}号收货地址</view>
+          <view class="address-section" bindtap="selectAddressForGroup" data-group-index="{{index}}">
+            <view wx:if="{{item.selectedAddress}}" class="address-info">
+              <view class="address-header">
+                <text class="receiver-name">{{item.selectedAddress.name}}</text>
+                <text class="phone">{{item.selectedAddress.phone}}</text>
+                <view class="default-tag" wx:if="{{item.selectedAddress.is_default}}">默认</view>
+              </view>
+              <view class="address-detail">
+                <text class="address-text">{{item.selectedAddress.province}}{{item.selectedAddress.city}}{{item.selectedAddress.district}}{{item.selectedAddress.street}}{{item.selectedAddress.detail_address}}</text>
+              </view>
+            </view>
+            <view wx:else class="no-address">
+              <text class="no-address-text">请选择收货地址</text>
+            </view>
+            <view class="address-arrow">></view>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 收货地址 - 只在非购物车模式显示 -->
+    <view class="card" wx:if="{{mode !== 'checkout'}}">
+      <view class="section-title">收货地址</view>
+      <view class="address-section" bindtap="selectAddress">
+        <view wx:if="{{selectedAddress}}" class="address-info">
+          <view class="address-header">
+            <text class="receiver-name">{{selectedAddress.name}}</text>
+            <text class="phone">{{selectedAddress.phone}}</text>
+            <view class="default-tag" wx:if="{{selectedAddress.is_default}}">默认</view>
+          </view>
+          <view class="address-detail">
+            <text class="address-text">{{selectedAddress.province}}{{selectedAddress.city}}{{selectedAddress.district}}{{selectedAddress.street}}{{selectedAddress.detail_address}}</text>
+          </view>
+        </view>
+        <view wx:else class="no-address">
+          <text class="no-address-text">请选择收货地址</text>
+        </view>
+        <view class="address-arrow">></view>
+      </view>
+    </view>
+    
+    <!-- 数量选择 - 只在非购物车模式显示 -->
+    <view class="card" wx:if="{{mode !== 'checkout'}}">
+      <view class="section-title">购买数量</view>
+      <view class="quantity-selector">
+        <button class="quantity-btn" bindtap="decreaseQuantity" disabled="{{qty <= 1}}">-</button>
+        <input class="quantity-input" type="number" value="{{qty}}" bindinput="onQuantityChange" />
+        <button class="quantity-btn" bindtap="increaseQuantity">+</button>
+      </view>
+      <view class="quantity-tip">库存：{{product.stock || 999}}件</view>
+    </view>
+    
+    <!-- 金额计算 - 单个商品模式 -->
+    <view class="card" wx:if="{{mode !== 'checkout'}}">
+      <view class="section-title">金额明细</view>
+      <view class="amount-details">
+        <view class="amount-row">
+          <text>单价：</text>
+          <text>¥{{product.price || 0}}</text>
+        </view>
+        <view class="amount-row">
+          <text>数量：</text>
+          <text>{{qty}}</text>
+        </view>
+        <view class="amount-row total">
+          <text>小计：</text>
+          <text class="total-amount">¥{{(product.price || 0) * qty}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 金额计算 - 购物车模式 -->
+    <view class="card" wx:if="{{mode === 'checkout'}}">
+      <view class="section-title">金额明细</view>
+      <view class="amount-details">
+        <view class="amount-row" wx:for="{{checkoutItems}}" wx:key="id">
+          <text>{{item.product_name}} x{{item.quantity}}：</text>
+          <text>¥{{item.subtotal}}</text>
+        </view>
+        <view class="amount-row total">
+          <text>合计：</text>
+          <text class="total-amount">¥{{checkoutTotal}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 备注 -->
+    <view class="card">
+      <view class="section-title">订单备注</view>
+      <textarea class="remark-input" placeholder="请输入备注信息（选填）" value="{{remark}}" bindinput="onRemarkChange" maxlength="200"></textarea>
+    </view>
+    
+    <!-- 提交按钮 -->
+    <view class="submit-section">
+      <view class="total-info">
+        <text class="total-label">合计：</text>
+        <text class="total-price" wx:if="{{mode !== 'checkout'}}">¥{{(product.price || 0) * qty}}</text>
+        <text class="total-price" wx:if="{{mode === 'checkout'}}">¥{{checkoutTotal}}</text>
+      </view>
+      <button class="btn-submit" bindtap="handleMainAction" disabled="{{!product && mode !== 'checkout' || qty <= 0 && mode !== 'checkout'}}">
+        {{mainButtonText}}
+      </button>
+    </view>
+  </view>
+</view>
+
+<!-- 地址选择弹窗 -->
+<view class="address-modal" wx:if="{{showAddressModal}}" bindtap="closeAddressModal">
+  <view class="modal-content" catchtap="">
+    <view class="modal-header">
+      <text class="modal-title">选择地址</text>
+      <text class="modal-close" bindtap="closeAddressModal">×</text>
+    </view>
+    
+    <view class="address-list">
+      <view 
+        class="address-item {{selectedAddress && selectedAddress.id === item.id ? 'selected' : ''}}"
+        wx:for="{{addresses}}" 
+        wx:key="id"
+        bindtap="selectAddressItem"
+        data-index="{{index}}"
+      >
+        <view class="address-header">
+          <text class="receiver-name">{{item.name}}</text>
+          <text class="phone">{{item.phone}}</text>
+          <view class="default-tag" wx:if="{{item.is_default}}">默认</view>
+        </view>
+        <view class="address-detail">
+          <text class="address-text">{{item.province}}{{item.city}}{{item.district}}{{item.street}}{{item.detail_address}}</text>
+        </view>
+        <view class="address-check" wx:if="{{selectedAddress && selectedAddress.id === item.id}}">✓</view>
+      </view>
+    </view>
+    
+    <view class="modal-footer">
+      <button class="btn-add-address" bindtap="addNewAddress">+ 新增地址</button>
+      <button class="btn-cancel" bindtap="closeAddressModal">取消</button>
+    </view>
+  </view>
+</view>
+

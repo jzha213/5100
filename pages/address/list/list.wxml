@@ -1,0 +1,39 @@
+<view class="container">
+  <!-- 地址列表 -->
+  <view wx:if="{{items.length > 0}}">
+    <view class="address-item" wx:for="{{items}}" wx:key="id">
+      <view class="address-content" bindtap="goEdit" data-id="{{item.id}}">
+        <view class="address-header">
+          <text class="receiver-name">{{item.name}}</text>
+          <text class="phone">{{item.phone}}</text>
+          <view class="default-tag" wx:if="{{item.is_default}}">默认</view>
+        </view>
+        <view class="address-detail">
+          <text class="address-text">{{item.province}}{{item.city}}{{item.district}}{{item.street}}{{item.detail_address}}</text>
+        </view>
+      </view>
+      <view class="address-actions">
+        <button class="action-btn edit-btn" bindtap="goEdit" data-id="{{item.id}}">编辑</button>
+        <button class="action-btn delete-btn" bindtap="deleteAddress" data-id="{{item.id}}">删除</button>
+        <button class="action-btn default-btn" wx:if="{{!item.is_default}}" bindtap="setDefault" data-id="{{item.id}}">设为默认</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:elif="{{!loading && items.length === 0}}">
+    <text class="empty-text">暂无收货地址</text>
+    <text class="empty-desc">添加地址后，下单时可直接选择</text>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading-state" wx:if="{{loading}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 新增地址按钮 -->
+  <view class="add-address-section">
+    <button class="btn-primary" bindtap="create">新增地址</button>
+  </view>
+</view>
+

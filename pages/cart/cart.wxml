@@ -1,0 +1,102 @@
+<!--pages/cart/cart.wxml-->
+<view class="container">
+  <!-- 未登录状态 -->
+  <view wx:if="{{!isLoggedIn}}" class="login-prompt">
+    <view class="prompt-icon">🔒</view>
+    <text class="prompt-title">请先登录</text>
+    <text class="prompt-desc">登录后即可查看购物车</text>
+    <view class="prompt-buttons">
+      <button class="btn-primary" bindtap="goToLogin">去登录</button>
+      <button class="btn-secondary" bindtap="goToRegister">注册账号</button>
+    </view>
+  </view>
+  
+  <!-- 加载状态 -->
+  <view wx:elif="{{loading}}" class="loading">
+    <text>加载中...</text>
+  </view>
+  
+  <!-- 空购物车状态 -->
+  <view wx:elif="{{cartItems.length === 0}}" class="empty-cart">
+    <view class="empty-icon">🛒</view>
+    <text class="empty-text">购物车是空的</text>
+    <button class="btn-primary" bindtap="goShopping">去购物</button>
+  </view>
+  
+  <!-- 购物车内容 -->
+  <view wx:else>
+    <!-- 购物车商品列表 -->
+    <view class="cart-list">
+      <view 
+        class="cart-item" 
+        wx:for="{{cartItems}}" 
+        wx:key="id"
+      >
+        <!-- 商品信息区域 -->
+        <view class="item-content">
+          <view class="item-checkbox">
+            <checkbox checked="{{item.selected}}" bindtap="toggleItem" data-id="{{item.id}}"/>
+          </view>
+          
+          <view class="item-image">
+            <image src="{{item.product.mainImage}}" mode="aspectFill"></image>
+          </view>
+          
+          <view class="item-info">
+            <text class="item-name">{{item.product.name}}</text>
+            <text class="item-sku">SKU: {{item.product.sku}}</text>
+            <view class="item-price-row">
+              <text class="item-price">¥{{item.product.price}}</text>
+              <text class="item-quantity">x{{item.quantity}}</text>
+            </view>
+          </view>
+        </view>
+        
+        <!-- 操作区域 -->
+        <view class="item-actions">
+          <view class="quantity-controls">
+            <button class="quantity-btn" bindtap="decreaseQuantity" data-id="{{item.id}}">-</button>
+            <input class="quantity-input" type="number" value="{{item.quantity}}" bindinput="onQuantityChange" data-id="{{item.id}}"/>
+            <button class="quantity-btn" bindtap="increaseQuantity" data-id="{{item.id}}">+</button>
+          </view>
+          <button class="delete-btn" bindtap="deleteItem" data-id="{{item.id}}">删除</button>
+        </view>
+        
+        <!-- 地址信息 -->
+        <view class="item-address" wx:if="{{item.address_info}}">
+          <text class="address-label">收货地址：</text>
+          <text class="address-text">{{item.address_info.full_address}}</text>
+        </view>
+        
+        <!-- 备注信息 -->
+        <view class="item-notes" wx:if="{{item.notes}}">
+          <text class="notes-label">备注：</text>
+          <text class="notes-text">{{item.notes}}</text>
+        </view>
+        
+        <!-- 小计 -->
+        <view class="item-subtotal">
+          <text class="subtotal-label">小计：</text>
+          <text class="subtotal-price">¥{{item.product.price * item.quantity}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 底部结算栏 -->
+    <view class="checkout-bar">
+      <view class="select-all">
+        <checkbox checked="{{allSelected}}" bindtap="toggleAll"/>
+        <text>全选</text>
+      </view>
+      
+      <view class="total-info">
+        <text class="total-label">合计：</text>
+        <text class="total-price">¥{{totalPrice}}</text>
+      </view>
+      
+      <button class="btn-checkout" bindtap="checkout" disabled="{{selectedCount === 0}}">
+        结算({{selectedCount}})
+      </button>
+    </view>
+  </view>
+</view>

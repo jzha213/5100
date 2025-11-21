@@ -1,0 +1,114 @@
+/* 我的页面样式 */
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 32rpx;
+  padding: 24rpx;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 16rpx;
+}
+
+.user-label {
+  font-size: 28rpx;
+  color: #666;
+  font-weight: 500;
+}
+
+.user-name {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.menu-buttons .btn-primary {
+  width: 100%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #ffffff;
+  font-size: 32rpx;
+  font-weight: bold;
+  padding: 32rpx;
+  border-radius: 24rpx;
+  border: none;
+  box-shadow: 0 12rpx 40rpx rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+}
+
+.menu-buttons .btn-primary:active {
+  background: linear-gradient(135deg, #5a6fd8, #6a4190);
+  transform: translateY(4rpx);
+  box-shadow: 0 8rpx 32rpx rgba(102, 126, 234, 0.4);
+}
+
+/* 退出登录按钮样式 */
+.menu-buttons .btn-logout {
+  width: 100%;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+  color: #ffffff;
+  font-size: 32rpx;
+  font-weight: bold;
+  padding: 32rpx;
+  border-radius: 24rpx;
+  border: none;
+  box-shadow: 0 12rpx 40rpx rgba(255, 107, 107, 0.3);
+  transition: all 0.3s ease;
+  margin-top: 20rpx;
+}
+
+.menu-buttons .btn-logout:active {
+  background: linear-gradient(135deg, #ff5252, #d32f2f);
+  transform: translateY(4rpx);
+  box-shadow: 0 8rpx 32rpx rgba(255, 107, 107, 0.4);
+}
+
+/* 登录按钮组样式 */
+.login-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.login-buttons .btn-primary {
+  width: 100%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #ffffff;
+  font-size: 32rpx;
+  font-weight: bold;
+  padding: 32rpx;
+  border-radius: 24rpx;
+  border: none;
+  box-shadow: 0 12rpx 40rpx rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+}
+
+.login-buttons .btn-primary:active {
+  background: linear-gradient(135deg, #5a6fd8, #6a4190);
+  transform: translateY(4rpx);
+  box-shadow: 0 8rpx 32rpx rgba(102, 126, 234, 0.4);
+}
+
+.login-buttons .btn-register {
+  width: 100%;
+  background: linear-gradient(135deg, #4CAF50, #8BC34A);
+  color: #ffffff;
+  font-size: 32rpx;
+  font-weight: bold;
+  padding: 32rpx;
+  border-radius: 24rpx;
+  border: none;
+  box-shadow: 0 12rpx 40rpx rgba(76, 175, 80, 0.3);
+  transition: all 0.3s ease;
+}
+
+.login-buttons .btn-register:active {
+  background: linear-gradient(135deg, #388E3C, #689F38);
+  transform: translateY(4rpx);
+  box-shadow: 0 8rpx 32rpx rgba(76, 175, 80, 0.4);
+}

@@ -1,0 +1,219 @@
+/* 我的信息页面样式 */
+
+/* 头像区域 */
+.avatar-section {
+  margin-bottom: 32rpx;
+}
+
+.avatar-container {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  background: #f5f5f5;
+}
+
+.avatar-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.username {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.user-role {
+  font-size: 24rpx;
+  color: #666;
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 4rpx 12rpx;
+  border-radius: 12rpx;
+  width: fit-content;
+}
+
+/* 表单样式 */
+.form-item {
+  margin-bottom: 32rpx;
+}
+
+.label {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16rpx;
+}
+
+.input {
+  width: 100%;
+  background: #f8f9fa;
+  border: 2rpx solid #e9ecef;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  font-size: 28rpx;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  border-color: #667eea;
+  background: #fff;
+  box-shadow: 0 0 0 6rpx rgba(102, 126, 234, 0.1);
+}
+
+.error-text {
+  display: block;
+  font-size: 24rpx;
+  color: #ff4757;
+  margin-top: 8rpx;
+}
+
+/* 按钮样式 */
+.btn-primary {
+  width: 100%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #ffffff;
+  font-size: 32rpx;
+  font-weight: bold;
+  padding: 32rpx;
+  border-radius: 24rpx;
+  border: none;
+  box-shadow: 0 12rpx 40rpx rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+  margin-bottom: 20rpx;
+}
+
+.btn-primary:active {
+  background: linear-gradient(135deg, #5a6fd8, #6a4190);
+  transform: translateY(4rpx);
+  box-shadow: 0 8rpx 32rpx rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:disabled {
+  background: #ccc;
+  box-shadow: none;
+  transform: none;
+}
+
+.btn-secondary {
+  width: 100%;
+  background: #f8f9fa;
+  color: #333;
+  font-size: 32rpx;
+  font-weight: 600;
+  padding: 32rpx;
+  border-radius: 24rpx;
+  border: 2rpx solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:active {
+  background: #e9ecef;
+  border-color: #dee2e6;
+}
+
+/* 加载状态 */
+.saving {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* 头像上传样式 */
+.avatar-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.avatar-preview {
+  position: relative;
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 100rpx;
+  overflow: hidden;
+  border: 4rpx solid #e9ecef;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.avatar-preview:active {
+  transform: scale(0.95);
+  border-color: #667eea;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  background: #f5f5f5;
+}
+
+.avatar-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.avatar-preview:active .avatar-overlay {
+  opacity: 1;
+}
+
+.upload-text {
+  color: white;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.avatar-actions {
+  display: flex;
+  gap: 16rpx;
+}
+
+.btn-upload {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  font-size: 24rpx;
+  font-weight: 600;
+  padding: 16rpx 32rpx;
+  border-radius: 20rpx;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-upload:active {
+  transform: scale(0.95);
+  background: linear-gradient(135deg, #5a6fd8, #6a4190);
+}
+
+.btn-clear {
+  background: #f8f9fa;
+  color: #666;
+  font-size: 24rpx;
+  font-weight: 500;
+  padding: 16rpx 32rpx;
+  border-radius: 20rpx;
+  border: 2rpx solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.btn-clear:active {
+  background: #e9ecef;
+  border-color: #dee2e6;
+}

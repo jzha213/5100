@@ -1,0 +1,23 @@
+<view class="container">
+  <view class="card">
+    <view class="user-info">
+      <text class="user-label">当前用户：</text>
+      <text class="user-name">{{user && user.username || '未登录'}}</text>
+    </view>
+    
+    <!-- 未登录状态 -->
+    <view class="login-buttons" wx:if="{{!user}}">
+      <button class="btn-primary" bindtap="toLogin">去登录</button>
+      <button class="btn-register" bindtap="toRegister">注册</button>
+    </view>
+    
+    <!-- 已登录状态 -->
+    <view class="menu-buttons" wx:if="{{user}}">
+      <button class="btn-primary" bindtap="toMyInfo">我的信息</button>
+      <button class="btn-primary" bindtap="toAddress">我的地址</button>
+      <button class="btn-primary" bindtap="toOrders">我的订单</button>
+      <button class="btn-logout" bindtap="logout">退出登录</button>
+    </view>
+  </view>
+</view>
+

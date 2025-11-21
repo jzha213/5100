@@ -1,0 +1,116 @@
+<!--index.wxml - 首页美化布局-->
+<view class="container">
+  <!-- 头部区域 -->
+    <view class="header">
+      <view class="header-top">
+        <view class="logo">
+          <view class="logo-icon">💧</view>
+          <text>5100</text>
+        </view>
+        <!-- 原右上角定位展示（北京市）已去掉 -->
+      </view>
+      
+    <!-- 搜索栏 -->
+    <view class="search-bar">
+      <text class="search-icon">🔍</text>
+      <input 
+        placeholder="搜索商品..." 
+        value="{{searchKeyword}}"
+        bindinput="onSearchInput"
+        bindconfirm="onSearchConfirm"
+        confirm-type="search"
+      />
+    </view>
+  </view>
+
+  <!-- 轮播图 -->
+  <view class="banner">
+    <image class="banner-image" src="{{bannerUrl}}" mode="aspectFill"></image>
+    <view class="banner-content">
+      <view class="banner-title">5100天然冰川矿泉水</view>
+      <view class="banner-subtitle">纯净天然，健康生活</view>
+    </view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="content">
+    <!-- 分类区域 -->
+    <view class="categories">
+      <view class="section-title">商品分类</view>
+      
+      <!-- 动态分类网格 -->
+      <view class="category-grid">
+        <view 
+          class="category-item" 
+          wx:for="{{categories}}" 
+          wx:key="id"
+          bindtap="onCategoryTap"
+          data-id="{{item.id}}"
+          data-name="{{item.name}}"
+        >
+          <view class="category-icon">
+            <image 
+              wx:if="{{item.icon_url}}" 
+              class="category-icon-image" 
+              src="{{item.icon_url}}" 
+              mode="aspectFill"
+            ></image>
+            <text wx:else class="category-icon-emoji">💧</text>
+          </view>
+          <text class="category-name">{{item.name}}</text>
+        </view>
+        
+        <!-- 显示更多按钮 -->
+        <view class="category-item more-btn" bindtap="goCategory">
+          <view class="category-icon">
+            <text class="category-icon-emoji">➕</text>
+          </view>
+          <text class="category-name">更多</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 推荐商品 -->
+    <view class="featured-products">
+      <view class="section-title">推荐商品</view>
+      
+      <!-- 动态推荐商品网格 -->
+      <view class="product-grid">
+        <view 
+          class="product-card" 
+          wx:for="{{featuredProducts}}" 
+          wx:key="id"
+          wx:for-item="product"
+          wx:for-index="productIndex"
+          bindtap="goProductDetail"
+          data-id="{{product.id}}"
+        >
+          <view class="product-image">
+            <image src="{{product.mainImage}}" mode="aspectFill" wx:if="{{product.mainImage}}"></image>
+            <text wx:else>💧</text>
+            <view class="product-badge" wx:if="{{product.is_featured}}">推荐</view>
+          </view>
+          <view class="product-info">
+            <text class="product-name">{{product.name}}</text>
+            <text class="product-desc">{{product.description || '优质商品，值得信赖'}}</text>
+            <view class="product-price">
+              <text class="price">¥{{product.price}}</text>
+            </view>
+          </view>
+        </view>
+        
+        <!-- 更多推荐商品按钮 -->
+        <view class="product-card more-products-btn" bindtap="goFeaturedProducts">
+          <view class="product-image">
+            <text>➕</text>
+          </view>
+          <view class="product-info">
+            <text class="product-name">更多推荐</text>
+            <text class="product-desc">查看更多推荐商品</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
