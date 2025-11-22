@@ -1,29 +1,38 @@
 <!--index.wxml - 首页美化布局-->
 <view class="container">
-  <!-- 头部区域 -->
-    <view class="header">
-      <view class="header-top">
-        <!-- 左上角头像图标，点击跳转“我的”页面 -->
-        <view class="logo" bindtap="goProfile">
-          <view class="logo-icon">
-            <!-- 已登录且有头像：显示用户头像 -->
-            <image 
-              wx:if="{{avatarUrl}}" 
-              src="{{avatarUrl}}" 
-              mode="aspectFill" 
-              style="width: 100%; height: 100%; border-radius: 50%;"
-            ></image>
-            <!-- 未登录或无头像：显示蓝色人形图标（蓝头像 + 白色圆形背景） -->
-            <view wx:else class="logo-default-avatar">
-              <view class="logo-default-head"></view>
-              <view class="logo-default-body"></view>
-            </view>
+  <!-- 自定义导航栏 -->
+  <view class="custom-navbar" style="padding-top: {{statusBarHeight}}px;">
+    <view class="navbar-content">
+      <!-- 左上角头像图标，点击跳转“我的”页面 -->
+      <view class="navbar-logo" bindtap="goProfile">
+        <view class="navbar-logo-icon">
+          <!-- 已登录且有头像：显示用户头像 -->
+          <image 
+            wx:if="{{avatarUrl}}" 
+            src="{{avatarUrl}}" 
+            mode="aspectFill" 
+            style="width: 100%; height: 100%; border-radius: 50%;"
+          ></image>
+          <!-- 未登录或无头像：显示蓝色人形图标（蓝头像 + 白色圆形背景） -->
+          <view wx:else class="navbar-logo-default-avatar">
+            <view class="navbar-logo-default-head"></view>
+            <view class="navbar-logo-default-body"></view>
           </view>
-          <!-- 头像右侧的 “>” 图标，直接使用 >，小程序不解析 &gt; 实体 -->
-          <text class="logo-arrow">></text>
         </view>
+        <!-- 头像右侧的 “>” 图标 -->
+        <text class="navbar-logo-arrow">></text>
       </view>
       
+      <!-- 导航栏标题 -->
+      <view class="navbar-title">首页</view>
+      
+      <!-- 右侧占位，保持标题居中 -->
+      <view class="navbar-placeholder"></view>
+    </view>
+  </view>
+
+  <!-- 头部区域 -->
+  <view class="header">
     <!-- 搜索栏 -->
     <view class="search-bar">
       <text class="search-icon">🔍</text>

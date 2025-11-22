@@ -15,7 +15,8 @@ Page({
     searchKeyword: '', // 搜索关键词
     isLoggedIn: false, // 登录状态
     user: null, // 用户信息
-    avatarUrl: '' // 首页左上角头像URL
+    avatarUrl: '', // 首页左上角头像URL
+    statusBarHeight: 0 // 状态栏高度
   },
   
   // 轮播图自动滚动计时器
@@ -23,6 +24,12 @@ Page({
 
   // 页面加载时获取数据
   async onLoad() {
+    // 获取系统信息，设置状态栏高度（单位：px，用于动态设置 padding-top）
+    const systemInfo = wx.getSystemInfoSync();
+    const statusBarHeight = systemInfo.statusBarHeight || 44; // 默认 44px
+    this.setData({
+      statusBarHeight: statusBarHeight
+    });
     this.setData({ loading: true });
     // 设置banner图为可访问的完整URL（使用SVG格式，但需要处理HTTP问题）
     this.setData({ bannerUrl: `${env.baseURL}/static/assets/images/banner.svg` });

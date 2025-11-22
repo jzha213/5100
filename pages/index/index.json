@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "三泰企业智能科技服务",
-  "usingComponents": {
-  }
+  "navigationBarTitleText": "首页",
+  "navigationStyle": "custom",
+  "usingComponents": {}
 }
