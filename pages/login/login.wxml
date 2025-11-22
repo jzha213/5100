@@ -1,8 +1,57 @@
 <view class="container">
-  <view class="card">
-    <input placeholder="用户名" value="{{username}}" bindinput="onInput" data-field="username" />
-    <input placeholder="密码" password value="{{password}}" bindinput="onInput" data-field="password" />
-    <button class="btn-primary" bindtap="onLogin">登录</button>
+  <view class="header">
+    <text class="title">欢迎登录</text>
+  </view>
+
+  <view class="form-container">
+    <!-- 用户名 -->
+    <view class="form-group">
+      <text class="label">用户名 *</text>
+      <view class="input-wrapper">
+        <view class="input-icon-avatar">
+          <view class="input-icon-avatar-head"></view>
+          <view class="input-icon-avatar-body"></view>
+        </view>
+        <input 
+          class="input" 
+          placeholder="请输入用户名" 
+          value="{{username}}" 
+          bindinput="onInput" 
+          data-field="username"
+        />
+      </view>
+    </view>
+
+    <!-- 密码 -->
+    <view class="form-group">
+      <text class="label">密码 *</text>
+      <view class="input-wrapper">
+        <text class="input-icon">🔒</text>
+        <input 
+          class="input" 
+          placeholder="请输入密码" 
+          password 
+          value="{{password}}" 
+          bindinput="onInput" 
+          data-field="password"
+        />
+      </view>
+    </view>
+
+    <!-- 登录按钮 -->
+    <button 
+      class="btn-login" 
+      bindtap="onLogin"
+      disabled="{{loading}}"
+    >
+      {{loading ? '登录中...' : '登录'}}
+    </button>
+
+    <!-- 注册链接 -->
+    <view class="register-link" bindtap="toRegister">
+      <text>还没有账号？</text>
+      <text class="link-text">立即注册</text>
+    </view>
   </view>
 </view>
 

@@ -1,9 +1,12 @@
 <!--index.wxml - 首页美化布局-->
 <view class="container">
   <!-- 自定义导航栏 -->
-  <view class="custom-navbar" style="padding-top: {{statusBarHeight}}px;">
+  <view class="custom-navbar">
+    <!-- 状态栏占位区域，确保覆盖系统状态栏 -->
+    <view class="navbar-statusbar" style="height: {{statusBarHeight}}px;"></view>
+    <!-- 导航栏内容区域 -->
     <view class="navbar-content">
-      <!-- 左上角头像图标，点击跳转“我的”页面 -->
+      <!-- 左上角头像图标，点击跳转"我的"页面 -->
       <view class="navbar-logo" bindtap="goProfile">
         <view class="navbar-logo-icon">
           <!-- 已登录且有头像：显示用户头像 -->
@@ -19,7 +22,7 @@
             <view class="navbar-logo-default-body"></view>
           </view>
         </view>
-        <!-- 头像右侧的 “>” 图标 -->
+        <!-- 头像右侧的 ">" 图标 -->
         <text class="navbar-logo-arrow">></text>
       </view>
       
@@ -32,7 +35,7 @@
   </view>
 
   <!-- 头部区域 -->
-  <view class="header">
+  <view class="header" style="padding-top: {{headerPaddingTop}}px;">
     <!-- 搜索栏 -->
     <view class="search-bar">
       <text class="search-icon">🔍</text>

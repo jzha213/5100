@@ -1,0 +1,159 @@
+/* 登录页面样式 */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 60rpx;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 60rpx;
+}
+
+.title {
+  font-size: 52rpx;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 0;
+  text-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.2);
+}
+
+.form-container {
+  background: #fff;
+  border-radius: 32rpx;
+  padding: 50rpx 40rpx;
+  box-shadow: 0 16rpx 48rpx rgba(0, 0, 0, 0.15);
+}
+
+.form-group {
+  margin-bottom: 40rpx;
+}
+
+.label {
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background: #f8f9fa;
+  border: 2rpx solid #e9ecef;
+  border-radius: 16rpx;
+  padding: 0 24rpx;
+  transition: all 0.3s ease;
+  height: 88rpx;
+  box-sizing: border-box;
+}
+
+.input-wrapper:focus-within {
+  border-color: #667eea;
+  background: #fff;
+  box-shadow: 0 0 0 6rpx rgba(102, 126, 234, 0.1);
+}
+
+/* 用户名输入框图标 - 蓝色人形图标（与首页左上角图标一致） */
+.input-icon-avatar {
+  width: 36rpx;
+  height: 36rpx;
+  position: relative;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.input-icon-avatar-head {
+  position: absolute;
+  top: 12%;
+  left: 30%;
+  width: 40%;
+  height: 40%;
+  background: #4da3ff;
+  border-radius: 50%;
+}
+
+.input-icon-avatar-body {
+  position: absolute;
+  bottom: 8%;
+  left: 20%;
+  width: 60%;
+  height: 42%;
+  background: #4da3ff;
+  border-radius: 50% 50% 45% 45%;
+}
+
+/* 密码输入框图标 */
+.input-icon {
+  font-size: 36rpx;
+  margin-right: 16rpx;
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.input {
+  flex: 1;
+  height: 100%;
+  font-size: 30rpx;
+  color: #333;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.input::placeholder {
+  color: #999;
+}
+
+.btn-login {
+  width: 100%;
+  height: 96rpx;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #ffffff;
+  font-size: 36rpx;
+  font-weight: bold;
+  border-radius: 24rpx;
+  border: none;
+  box-shadow: 0 12rpx 40rpx rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+  margin-top: 20rpx;
+  margin-bottom: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-login:active {
+  background: linear-gradient(135deg, #5a6fd8, #6a4190);
+  transform: translateY(4rpx);
+  box-shadow: 0 8rpx 32rpx rgba(102, 126, 234, 0.5);
+}
+
+.btn-login[disabled] {
+  background: #cccccc;
+  box-shadow: none;
+  color: #999999;
+  transform: none;
+}
+
+.register-link {
+  text-align: center;
+  font-size: 28rpx;
+  color: #666;
+  margin-top: 20rpx;
+}
+
+.link-text {
+  color: #667eea;
+  font-weight: 600;
+  margin-left: 8rpx;
+}
+

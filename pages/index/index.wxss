@@ -1,6 +1,6 @@
 /**index.wxss - 首页样式美化**/
 
-/* 首页容器 */
+/* 首页容器 - 确保背景色覆盖整个页面 */
 .container {
   margin-top: 0;
   margin-left: 0;
@@ -8,6 +8,12 @@
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
   position: relative;
+}
+
+/* 确保页面背景色也被覆盖 */
+page {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
 }
 
 /* 自定义导航栏 - 固定在顶部，不随页面滚动 */
@@ -19,6 +25,13 @@
   z-index: 1000;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+  width: 100%;
+}
+
+/* 状态栏占位区域 - 覆盖系统状态栏，确保显示渐变背景 */
+.navbar-statusbar {
+  width: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .navbar-content {
@@ -28,6 +41,7 @@
   justify-content: space-between;
   padding: 0 32rpx;
   position: relative;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 /* 导航栏左上角图标 */
@@ -103,14 +117,17 @@
 
 /* 头部区域 */
 .header {
-  /* 为自定义导航栏预留空间：状态栏高度 + 导航栏高度 */
-  padding-top: calc(env(safe-area-inset-top, 44px) + 88rpx);
+  /* 为自定义导航栏预留空间：状态栏高度 + 导航栏高度 + 额外间距 */
+  /* padding-top 通过 JavaScript 动态设置（单位：px） */
+  /* 默认值：108px (44px 状态栏 + 44px 导航栏 + 20px 间距) */
+  padding-top: 108px;
   padding-left: 32rpx;
   padding-right: 32rpx;
   padding-bottom: 0;
   color: white;
   position: relative;
   z-index: 10;
+  background: transparent; /* 确保背景透明，使用容器的渐变背景 */
 }
 
 .logo-icon {

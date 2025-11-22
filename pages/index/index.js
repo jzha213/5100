@@ -16,7 +16,9 @@ Page({
     isLoggedIn: false, // 登录状态
     user: null, // 用户信息
     avatarUrl: '', // 首页左上角头像URL
-    statusBarHeight: 0 // 状态栏高度
+    statusBarHeight: 44, // 状态栏高度（默认44px）
+    navbarHeight: 44, // 导航栏高度（44px = 88rpx）
+    headerPaddingTop: 88 // 头部区域的上边距（状态栏高度 + 导航栏高度）
   },
   
   // 轮播图自动滚动计时器
@@ -24,11 +26,17 @@ Page({
 
   // 页面加载时获取数据
   async onLoad() {
-    // 获取系统信息，设置状态栏高度（单位：px，用于动态设置 padding-top）
+    // 获取系统信息，设置状态栏高度和头部区域上边距
     const systemInfo = wx.getSystemInfoSync();
-    const statusBarHeight = systemInfo.statusBarHeight || 44; // 默认 44px
+    const statusBarHeight = systemInfo.statusBarHeight || 44; // 默认 44px（状态栏高度）
+    const navbarHeight = 44; // 导航栏高度 44px (88rpx)
+    // 头部区域上边距 = 状态栏 + 导航栏 + 额外间距（确保搜索栏不被遮挡）
+    const headerPaddingTop = statusBarHeight + navbarHeight + 20; // 增加 20px 间距
+    
     this.setData({
-      statusBarHeight: statusBarHeight
+      statusBarHeight: statusBarHeight,
+      navbarHeight: navbarHeight,
+      headerPaddingTop: headerPaddingTop
     });
     this.setData({ loading: true });
     // 设置banner图为可访问的完整URL（使用SVG格式，但需要处理HTTP问题）

@@ -1,8 +1,13 @@
 <view class="container">
   <view class="header">
-    <image class="logo" src="{{defaultAvatarUrl}}"></image>
+    <view class="logo">
+      <view class="logo-default-avatar">
+        <view class="logo-default-head"></view>
+        <view class="logo-default-body"></view>
+      </view>
+    </view>
     <text class="title">新用户注册</text>
-    <text class="subtitle">欢迎加入5100天然冰川矿泉水</text>
+    <text class="subtitle">欢迎加入</text>
   </view>
 
   <view class="form-container">

@@ -17,9 +17,43 @@
 .logo {
   width: 120rpx;
   height: 120rpx;
+  background: #ffffff;
   border-radius: 50%;
+  border: 2rpx solid #4da3ff;
   margin-bottom: 20rpx;
   box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 注册页面默认头像（蓝色人形 + 白色圆形背景）- 与首页左上角图标一致 */
+.logo-default-avatar {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.logo-default-head {
+  position: absolute;
+  top: 12%;
+  left: 30%;
+  width: 40%;
+  height: 40%;
+  background: #4da3ff;
+  border-radius: 50%;
+}
+
+.logo-default-body {
+  position: absolute;
+  bottom: 8%;
+  left: 20%;
+  width: 60%;
+  height: 42%;
+  background: #4da3ff;
+  border-radius: 50% 50% 45% 45%;
 }
 
 .title {
