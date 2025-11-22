@@ -146,20 +146,24 @@ Page({
         return {
           ...item,
           product: product,
-          selected: true // 默认选中，这样用户能看到总价
+          selected: false // 默认不选中，让用户自己选择
         };
       }).filter(item => item !== null); // 过滤掉无效数据
       
       console.log('处理后的购物车商品:', processedItems);
       
-      // 计算全选状态
-      const allSelected = processedItems.length > 0 && processedItems.every(item => item.selected);
+      // 计算全选状态（默认不选中，所以 allSelected 初始为 false）
+      const allSelected = false; // 默认不选中任何选项
       
       this.setData({ 
         cartItems: processedItems,
         loading: false,
-        allSelected: allSelected
+        allSelected: allSelected,
+        totalPrice: '0.00', // 初始总价为 0
+        selectedCount: 0 // 初始选中数量为 0
       });
+      
+      // 不需要调用 calculateTotal，因为默认没有选中任何商品
     } catch (error) {
       console.error('加载购物车失败:', error);
       

@@ -6,7 +6,10 @@ const env = require('../../config/env');
 Page({
   data: {
     categories: [], // 商品分类数据
-    featuredProducts: [], // 推荐商品数据
+    featuredProducts: [], // 推荐商品数据（用于下方网格展示）
+    bannerProducts: [], // 轮播图推荐商品数据（用于顶部轮播）
+    bannerCurrent: 0, // 当前轮播图索引
+    bannerAutoplay: true, // 轮播图是否自动播放
     loading: false,
     cartCount: 0, // 购物车数量
     searchKeyword: '', // 搜索关键词
@@ -14,6 +17,9 @@ Page({
     user: null, // 用户信息
     avatarUrl: '' // 首页左上角头像URL
   },
+  
+  // 轮播图自动滚动计时器
+  bannerTimer: null,
 
   // 页面加载时获取数据
   async onLoad() {
@@ -29,6 +35,14 @@ Page({
       this.loadFeaturedProducts()
     ]);
     this.setData({ loading: false });
+    
+    // 启动轮播图自动滚动
+    this.startBannerAutoPlay();
+  },
+  
+  // 页面卸载时清理定时器
+  onUnload() {
+    this.stopBannerAutoPlay();
   },
 
   // 页面显示时刷新数据
@@ -101,8 +115,8 @@ Page({
       const products = await productService.list({ is_featured: true });
       console.log('获取到的推荐商品数据:', products);
       
-      // 只取前8个推荐商品，并处理图片URL
-      const displayProducts = products.slice(0, 8).map(product => {
+      // 处理图片URL
+      const processedProducts = products.map(product => {
         return {
           id: product.id,
           name: product.name,
@@ -114,8 +128,15 @@ Page({
         };
       });
       
+      // 轮播图展示前5个推荐商品
+      const bannerProducts = processedProducts.slice(0, 5);
+      
+      // 下方网格展示前8个推荐商品（如果数量足够）
+      const displayProducts = processedProducts.slice(0, 8);
+      
       this.setData({ 
-        featuredProducts: displayProducts
+        bannerProducts: bannerProducts, // 轮播图商品
+        featuredProducts: displayProducts // 下方网格商品
       });
     } catch (error) {
       console.error('加载推荐商品失败:', error);
@@ -191,6 +212,56 @@ Page({
     });
   },
 
+  // 轮播图切换事件（包括用户点击指示器或手动滑动）
+  onBannerChange(e) {
+    const current = e.detail.current;
+    console.log('轮播图切换:', current);
+    
+    this.setData({
+      bannerCurrent: current
+    });
+    
+    // 小程序原生 swiper 的 autoplay 会在用户手动切换后自动重置计时器
+    // 不需要额外处理，保持自动播放开启即可
+  },
+  
+  // 轮播图触摸开始（用户开始滑动时，小程序会自动暂停 autoplay）
+  onBannerTouchStart() {
+    // 小程序原生 swiper 会在用户触摸时自动暂停 autoplay
+    // 不需要手动处理
+  },
+  
+  // 轮播图触摸结束（用户滑动结束后，小程序会自动恢复 autoplay 并重置计时器）
+  onBannerTouchEnd() {
+    // 小程序原生 swiper 会在用户触摸结束后自动恢复 autoplay
+    // 并在当前项目上重新开始计时（3秒后自动切换）
+    // 不需要手动处理
+  },
+  
+  // 启动轮播图自动滚动
+  startBannerAutoPlay() {
+    // 如果轮播图商品数量为0，不启动自动滚动
+    if (!this.data.bannerProducts || this.data.bannerProducts.length === 0) {
+      return;
+    }
+    
+    // 开启自动播放（小程序原生会处理点击指示器和滑动后的自动重置）
+    this.setData({
+      bannerAutoplay: true
+    });
+  },
+  
+  // 停止轮播图自动滚动
+  stopBannerAutoPlay() {
+    if (this.bannerTimer) {
+      clearTimeout(this.bannerTimer);
+      this.bannerTimer = null;
+    }
+    this.setData({
+      bannerAutoplay: false
+    });
+  },
+  
   // 跳转到商品详情页面
   goProductDetail(e) {
     const productId = e.currentTarget.dataset.id;

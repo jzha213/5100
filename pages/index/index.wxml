@@ -37,13 +37,36 @@
     </view>
   </view>
 
-  <!-- 轮播图 -->
-  <view class="banner">
-    <image class="banner-image" src="{{bannerUrl}}" mode="aspectFill"></image>
-    <view class="banner-content">
-      <view class="banner-title">5100天然冰川矿泉水</view>
-      <view class="banner-subtitle">纯净天然，健康生活</view>
-    </view>
+  <!-- 推荐商品轮播 -->
+  <view class="banner-swiper">
+    <swiper 
+      class="product-swiper" 
+      indicator-dots="{{true}}" 
+      autoplay="{{bannerAutoplay}}" 
+      interval="{{3000}}" 
+      duration="{{500}}"
+      circular="{{true}}"
+      current="{{bannerCurrent}}"
+      indicator-color="rgba(255,255,255,0.5)"
+      indicator-active-color="#ffffff"
+      bindchange="onBannerChange"
+    >
+      <swiper-item 
+        wx:for="{{bannerProducts}}" 
+        wx:key="id"
+        bindtap="goProductDetail"
+        data-id="{{item.id}}"
+      >
+        <view class="swiper-product-item">
+          <image class="swiper-product-image" src="{{item.mainImage}}" mode="aspectFill"></image>
+          <view class="swiper-product-content">
+            <view class="swiper-product-title">{{item.name}}</view>
+            <view class="swiper-product-desc">{{item.description || '优质商品，值得信赖'}}</view>
+            <view class="swiper-product-price">¥{{item.price}}</view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
   </view>
 
   <!-- 内容区域 -->
