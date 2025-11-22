@@ -39,7 +39,7 @@
           </view>
           
           <view class="item-image">
-            <image src="{{item.product.mainImage}}" mode="aspectFill"></image>
+            <image src="{{item.product.mainImage}}" mode="aspectFit"></image>
           </view>
           
           <view class="item-info">

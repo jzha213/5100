@@ -17,7 +17,7 @@
         <text class="section-title">商品信息</text>
       </view>
       <view class="product-info">
-        <image class="product-image" src="{{product.mainImage}}" mode="aspectFill"></image>
+        <image class="product-image" src="{{product.mainImage}}" mode="aspectFit"></image>
         <view class="product-details">
           <text class="product-name">{{product.name}}</text>
           <text class="product-sku">SKU: {{product.sku}}</text>
@@ -45,7 +45,7 @@
               wx:for-item="product"
               wx:key="id"
             >
-              <image class="item-image" src="{{product.product_image}}" mode="aspectFill"></image>
+              <image class="item-image" src="{{product.product_image}}" mode="aspectFit"></image>
               <view class="item-details">
                 <text class="item-name">{{product.product_name}}</text>
                 <text class="item-sku">SKU: {{product.product_sku}}</text>

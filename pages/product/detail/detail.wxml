@@ -2,7 +2,7 @@
   <view class="card" wx:if="{{item}}">
     <!-- 商品图片 -->
     <view class="product-image-section">
-      <image class="product-image" src="{{item.mainImage}}" mode="aspectFill"></image>
+      <image class="product-image" src="{{item.mainImage}}" mode="aspectFit"></image>
     </view>
     
     <!-- 商品信息 -->

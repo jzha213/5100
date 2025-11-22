@@ -29,7 +29,7 @@
       <view class="section-title">商品信息</view>
       <view class="product-list">
         <view class="product-item" wx:for="{{order.items}}" wx:key="id">
-          <image class="product-image" src="{{item.mainImage}}" mode="aspectFill"></image>
+          <image class="product-image" src="{{item.mainImage}}" mode="aspectFit"></image>
           <view class="product-info">
             <text class="product-name">{{item.product_name}}</text>
             <text class="product-sku">SKU: {{item.product_sku}}</text>

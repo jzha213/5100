@@ -94,8 +94,8 @@ Page({
         };
       });
       
-      // 只取前4个分类
-      const displayCategories = categoriesWithIcons.slice(0, 4);
+      // 只取前7个分类
+      const displayCategories = categoriesWithIcons.slice(0, 7);
       
       this.setData({ 
         categories: displayCategories
@@ -124,14 +124,26 @@ Page({
           price: product.price,
           category_name: product.category_name,
           is_featured: product.is_featured,
+          sort_order: product.sort_order || 0, // 获取排序号，默认为0
           mainImage: getProductMainImage(product)
         };
       });
       
-      // 轮播图展示前5个推荐商品
-      const bannerProducts = processedProducts.slice(0, 5);
+      // 按排序号从小到大排序（sort_order 从小到大）
+      processedProducts.sort((a, b) => {
+        const sortA = a.sort_order || 0;
+        const sortB = b.sort_order || 0;
+        // 如果排序号相同，按ID排序（从小到大）
+        if (sortA === sortB) {
+          return a.id - b.id;
+        }
+        return sortA - sortB;
+      });
       
-      // 下方网格展示前8个推荐商品（如果数量足够）
+      // 轮播图展示前10个推荐商品（已按排序号排序）
+      const bannerProducts = processedProducts.slice(0, 10);
+      
+      // 下方网格展示前8个推荐商品（已按排序号排序）
       const displayProducts = processedProducts.slice(0, 8);
       
       this.setData({ 

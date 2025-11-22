@@ -16,7 +16,7 @@
         <!-- 商品列表 -->
         <view class="product-list" wx:if="{{item.items && item.items.length > 0}}">
           <view class="product-item" wx:for="{{item.items}}" wx:key="id" wx:for-item="product">
-            <image class="product-image" src="{{product.mainImage}}" mode="aspectFill"></image>
+            <image class="product-image" src="{{product.mainImage}}" mode="aspectFit"></image>
             <view class="product-info">
               <text class="product-name">{{product.product_name}}</text>
               <text class="product-sku">SKU: {{product.product_sku}}</text>

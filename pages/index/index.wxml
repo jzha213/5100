@@ -58,7 +58,7 @@
         data-id="{{item.id}}"
       >
         <view class="swiper-product-item">
-          <image class="swiper-product-image" src="{{item.mainImage}}" mode="aspectFill"></image>
+          <image class="swiper-product-image" src="{{item.mainImage}}" mode="aspectFit"></image>
           <view class="swiper-product-content">
             <view class="swiper-product-title">{{item.name}}</view>
             <view class="swiper-product-desc">{{item.description || '优质商品，值得信赖'}}</view>
@@ -123,7 +123,7 @@
           data-id="{{product.id}}"
         >
           <view class="product-image">
-            <image src="{{product.mainImage}}" mode="aspectFill" wx:if="{{product.mainImage}}"></image>
+            <image src="{{product.mainImage}}" mode="aspectFit" wx:if="{{product.mainImage}}"></image>
             <text wx:else>💧</text>
             <view class="product-badge" wx:if="{{product.is_featured}}">推荐</view>
           </view>
