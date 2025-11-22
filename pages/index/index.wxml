@@ -3,11 +3,25 @@
   <!-- 头部区域 -->
     <view class="header">
       <view class="header-top">
-        <view class="logo">
-          <view class="logo-icon">💧</view>
-          <text>5100</text>
+        <!-- 左上角头像图标，点击跳转“我的”页面 -->
+        <view class="logo" bindtap="goProfile">
+          <view class="logo-icon">
+            <!-- 已登录且有头像：显示用户头像 -->
+            <image 
+              wx:if="{{avatarUrl}}" 
+              src="{{avatarUrl}}" 
+              mode="aspectFill" 
+              style="width: 100%; height: 100%; border-radius: 50%;"
+            ></image>
+            <!-- 未登录或无头像：显示蓝色人形图标（蓝头像 + 白色圆形背景） -->
+            <view wx:else class="logo-default-avatar">
+              <view class="logo-default-head"></view>
+              <view class="logo-default-body"></view>
+            </view>
+          </view>
+          <!-- 头像右侧的 “>” 图标，直接使用 >，小程序不解析 &gt; 实体 -->
+          <text class="logo-arrow">></text>
         </view>
-        <!-- 原右上角定位展示（北京市）已去掉 -->
       </view>
       
     <!-- 搜索栏 -->

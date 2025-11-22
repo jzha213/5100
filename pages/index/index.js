@@ -1,6 +1,6 @@
 // index.js - 首页逻辑
 const productService = require('../../services/product');
-const { getProductMainImage, getCategoryIcon } = require('../../utils/image');
+const { getProductMainImage, getCategoryIcon, getUserAvatar } = require('../../utils/image');
 const env = require('../../config/env');
 
 Page({
@@ -11,7 +11,8 @@ Page({
     cartCount: 0, // 购物车数量
     searchKeyword: '', // 搜索关键词
     isLoggedIn: false, // 登录状态
-    user: null // 用户信息
+    user: null, // 用户信息
+    avatarUrl: '' // 首页左上角头像URL
   },
 
   // 页面加载时获取数据
@@ -50,13 +51,17 @@ Page({
       this.setData({
         isLoggedIn: true,
         user: user || null,
-        cartCount: (user && user.cartCount) ? user.cartCount : 0
+        cartCount: (user && user.cartCount) ? user.cartCount : 0,
+        // 已登录时，如果有头像则使用用户头像，否则使用系统默认图标样式
+        avatarUrl: (user && user.avatar_url) ? getUserAvatar(user.avatar_url) : ''
       });
     } else {
       this.setData({
         isLoggedIn: false,
         user: null,
-        cartCount: 0
+        cartCount: 0,
+        // 未登录时，使用系统默认图标样式（不传URL）
+        avatarUrl: ''
       });
     }
   },
@@ -125,6 +130,13 @@ Page({
   goProductList() {
     wx.navigateTo({
       url: '/pages/product/list/list'
+    });
+  },
+
+  // 跳转到“我的”页面（个人中心 Tab）
+  goProfile() {
+    wx.switchTab({
+      url: '/pages/profile/profile'
     });
   },
 

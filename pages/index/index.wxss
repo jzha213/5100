@@ -30,18 +30,55 @@
   font-weight: bold;
   display: flex;
   align-items: center;
-  gap: 16rpx;
+  gap: 8rpx; /* 减小间距，让头像和箭头更紧凑 */
 }
 
 .logo-icon {
-  width: 48rpx;
-  height: 48rpx;
-  background: rgba(255,255,255,0.2);
-  border-radius: 12rpx;
+  /* 图标整体放大约 20% */
+  width: 58rpx;
+  height: 58rpx;
+  background: #ffffff;
+  border-radius: 50%;
+  border: 2rpx solid #4da3ff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24rpx;
+  font-size: 30rpx;
+}
+
+/* 头像右侧 “>” 图标样式，与头像间隔紧凑 */
+.logo-arrow {
+  font-size: 32rpx;
+  color: #ffffff;
+  opacity: 0.9;
+  /* 去掉 margin-left，使用 .logo 的 gap 控制间距 */
+}
+
+/* 首页左上角默认头像（蓝色人形 + 白色圆形背景） */
+.logo-default-avatar {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.logo-default-head {
+  position: absolute;
+  top: 12%;
+  left: 30%;
+  width: 40%;
+  height: 40%;
+  background: #4da3ff;
+  border-radius: 50%;
+}
+
+.logo-default-body {
+  position: absolute;
+  bottom: 8%;
+  left: 20%;
+  width: 60%;
+  height: 42%;
+  background: #4da3ff;
+  border-radius: 50% 50% 45% 45%;
 }
 
 .location {
